@@ -20,8 +20,9 @@ public class VacuumCollisionHandler : MonoBehaviour {
     {
         Debug.Log("entered");
         VacuumTargetScript targetManager = other.GetComponent<VacuumTargetScript>();
+        other.gameObject.transform.SetParent(this.gameObject.transform);
 
-        if(targetManager != null)
+        if (targetManager != null)
         {
             targetManager.VacuumedAction();
         }
