@@ -15,6 +15,7 @@ public class VacuumOnOffSwitch : MonoBehaviour
         vacuumAudioSource = GetComponent<AudioSource>();
         vacuum = vacuumZone.GetComponent<VacuumCollisionHandler>();
         vacuumZoneRenderer = vacuumZone.GetComponent<MeshRenderer>();
+        vacuumZoneRenderer.enabled = false;
         vacuum.ison = false;
 
     }
