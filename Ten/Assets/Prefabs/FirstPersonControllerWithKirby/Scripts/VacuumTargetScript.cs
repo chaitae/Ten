@@ -13,5 +13,12 @@ public class VacuumTargetScript : MonoBehaviour {
     public void VacuumedAction()
     {
         Debug.Log(this.name + " vacuumed");
+        StartCoroutine(WaitAndDestroy(3));        
+    }
+
+    private IEnumerator WaitAndDestroy(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        Destroy(gameObject);
     }
 }
