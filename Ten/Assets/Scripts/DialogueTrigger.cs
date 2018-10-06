@@ -8,10 +8,11 @@ public class DialogueTrigger : MonoBehaviour,IInteractable {
     public event endConversation OnEndConversationHandler;
     public bool triggerOnAwake = false;
     public AudioSource audioSource;
-    float currTime = 0;
+    float currTime = 3;
     public GameObject activatableGO;
     bool calledDialogue = false;
     bool isInDialogue = false;
+    bool conversationEnded = false;
     void OnEnable()
     {
         DialogueManager.OnEndConversationHandler += SetDialogueOff;
@@ -27,21 +28,27 @@ public class DialogueTrigger : MonoBehaviour,IInteractable {
     }
     void Update()
     {
-        if(Input.GetMouseButtonDown(1))
+        //if(Input.GetMouseButtonDown(1))
+        //{
+        //    TriggerDialogue();
+        //}
+        //currTime += Time.deltaTime;
+        //if(currTime >=.3f && triggerOnAwake && !calledDialogue)
+        //{
+        //    calledDialogue = true;
+        //    TriggerDialogue();
+        //}
+
+        //start timer after dialogue completed
+        if(conversationEnded)
         {
-            TriggerDialogue();
-        }
-        currTime += Time.deltaTime;
-        if(currTime >=.3f && triggerOnAwake && !calledDialogue)
-        {
-            calledDialogue = true;
-            TriggerDialogue();
+            currTime += Time.deltaTime;
         }
 
     }
     public void interact()
     {
-        if(!isInDialogue)
+        if(!isInDialogue && currTime > .2f)
         TriggerDialogue();
     }
 
@@ -63,6 +70,7 @@ public class DialogueTrigger : MonoBehaviour,IInteractable {
     }
     public void EndConversationBehavior()
     {
+        conversationEnded = true;
         if (OnEndConversationHandler != null)
             OnEndConversationHandler();
         if (activatableGO != null)
@@ -79,6 +87,8 @@ public class DialogueTrigger : MonoBehaviour,IInteractable {
     }
     public void TriggerDialogue()
     {
+        conversationEnded = false;
+        currTime = 0;
         DialogueManager.instance.StartDialogue(dialogue);
         //if(DoEndBehavior)
         DialogueManager.OnEndConversationHandler += EndConversationBehavior;
