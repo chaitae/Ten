@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour {
     }
     void EndRound()
     {
-
+        Debug.Log("roundEnd");
     }
     void StartRound()
     {

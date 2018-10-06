@@ -16,11 +16,12 @@ public class Ghost : MonoBehaviour,IInteractable {
     public float speed = 2f;
     float distanceFromPlayer;
     MovementMode moveMode = MovementMode.Wander;
-    public GameObject player;
+    GameObject player;
     // Use this for initialization
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        player = GameObject.FindGameObjectWithTag("Player");
         ChooseRandomLocation();
         agent.speed = speed;
     }
