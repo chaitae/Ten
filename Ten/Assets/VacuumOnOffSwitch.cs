@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class VacuumOnOffSwitch : MonoBehaviour
 {
-    private AudioSource _audio;
-    private bool audiotoggle = false;
+    public GameObject vacuumZone;
+    private MeshRenderer vacuumZoneRenderer;
+    private VacuumCollisionHandler vacuum;
+    private AudioSource vacuumAudioSource;
     // Use this for initialization
     void Start()
     {
-        _audio = GetComponent<AudioSource>();
+        vacuumAudioSource = GetComponent<AudioSource>();
+        vacuum = vacuumZone.GetComponent<VacuumCollisionHandler>();
+        vacuumZoneRenderer = vacuumZone.GetComponent<MeshRenderer>();
+        vacuum.ison = false;
+
     }
 
     // Update is called once per frame
@@ -17,15 +24,16 @@ public class VacuumOnOffSwitch : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            audiotoggle = !audiotoggle;
-
-            if (audiotoggle)
+            vacuum.ison = !vacuum.ison;
+            if (vacuum.ison)
             {
-                _audio.Play();
+                vacuumAudioSource.Play();
+                vacuumZoneRenderer.enabled = true;
             }
             else
             {
-                _audio.Stop();
+                vacuumAudioSource.Stop();
+                vacuumZoneRenderer.enabled = false;
             }
         }
     }
