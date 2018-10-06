@@ -12,6 +12,7 @@ public class Ghost : MonoBehaviour {
     NavMeshAgent agent;
     public float range = 10.0f;
     public float sightDistance;
+    public float speed = 2f;
     float distanceFromPlayer;
     MovementMode moveMode = MovementMode.Wander;
     public GameObject player;
@@ -20,6 +21,7 @@ public class Ghost : MonoBehaviour {
     {
         agent = GetComponent<NavMeshAgent>();
         ChooseRandomLocation();
+        agent.speed = speed;
     }
     void ChooseRandomLocation()
     {
