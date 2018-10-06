@@ -11,6 +11,7 @@ using UnityEngine;
 /// Place this class in the collision box of the vacuum.
 /// </summary>
 public class VacuumCollisionHandler : MonoBehaviour {
+    IInteractable vaccuumInteractable;
     private void Start()
     {
         Debug.Log("Vacuum Collision Handler Instantiated!");
@@ -19,8 +20,23 @@ public class VacuumCollisionHandler : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("entered");
-        IInteractable vaccuumInteractable = other.GetComponent<IInteractable>();
+        vaccuumInteractable = other.GetComponent<IInteractable>();
         if (vaccuumInteractable != null)
+        {
+            //vaccuumInteractable.interact();
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        IInteractable temp = other.GetComponent<IInteractable>();
+        if(temp != null)
+        {
+            vaccuumInteractable = null;
+        }
+    }
+    public void Update()
+    {
+        if(Input.GetMouseButton(0) && vaccuumInteractable != null)
         {
             vaccuumInteractable.interact();
         }
