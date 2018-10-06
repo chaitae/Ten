@@ -5,11 +5,12 @@ using UnityEngine.AI;
 
 public enum MovementMode
 {
-    Wander,Flee
+    Wander,Flee,Stop
 }
 
-public class Ghost : MonoBehaviour {
+public class Ghost : MonoBehaviour,IInteractable {
     NavMeshAgent agent;
+    public bool isImposter = false;
     public float range = 10.0f;
     public float sightDistance;
     public float speed = 2f;
@@ -84,7 +85,35 @@ public class Ghost : MonoBehaviour {
                 Debug.Log("ruuuun");
             }
         }
+        else if(moveMode == MovementMode.Stop)
+        {
+            agent.isStopped = true;
+            agent.ResetPath();
+        }
         //movement wander action
         
+    }
+
+    public void interact()
+    {
+        VacuumedAction();
+    }
+
+    public void interact(KeyCode key)
+    {
+    }
+    public void VacuumedAction()
+    {
+        VacuumCollisionHandler vacuumCol = GameObject.FindObjectOfType<VacuumCollisionHandler>();
+        this.transform.SetParent(vacuumCol.gameObject.transform);
+        moveMode = MovementMode.Stop;
+        Debug.Log(this.name + " vacuumed");
+        StartCoroutine(WaitAndDestroy(3));
+    }
+
+    private IEnumerator WaitAndDestroy(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        Destroy(gameObject);
     }
 }

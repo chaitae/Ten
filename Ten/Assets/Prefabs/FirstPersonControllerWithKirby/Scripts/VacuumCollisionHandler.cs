@@ -19,12 +19,10 @@ public class VacuumCollisionHandler : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("entered");
-        VacuumTargetScript targetManager = other.GetComponent<VacuumTargetScript>();
-        other.gameObject.transform.SetParent(this.gameObject.transform);
-
-        if (targetManager != null)
+        IInteractable vaccuumInteractable = other.GetComponent<IInteractable>();
+        if (vaccuumInteractable != null)
         {
-            targetManager.VacuumedAction();
+            vaccuumInteractable.interact();
         }
     }
 }
