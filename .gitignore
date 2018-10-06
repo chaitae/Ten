@@ -35,3 +35,4 @@ sysinfo.txt
 *.apk
 *.unitypackage
 Ten/Assets/Prefabs.meta
+Ten/Assets/Scenes/KimScene.unity
