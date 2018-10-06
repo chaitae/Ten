@@ -5,16 +5,12 @@ using UnityEngine.AI;
 
 public class Ghost : MonoBehaviour {
     public Transform goal;
-    public float walkRadiusMax = 2;
-    public float walkRadiusMin = 4;
     NavMeshAgent agent;
     public float range = 10.0f;
 
     // Use this for initialization
     void Start()
     {
-        Vector3 randomDirection = Random.insideUnitSphere * walkRadiusMax;
-
         agent = GetComponent<NavMeshAgent>();
         ChooseNewLocation();
     }
