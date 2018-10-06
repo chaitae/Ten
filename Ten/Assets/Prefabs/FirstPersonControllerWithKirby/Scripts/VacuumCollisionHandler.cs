@@ -10,10 +10,9 @@ using UnityEngine;
 /// <summary>
 /// Place this class in the collision box of the vacuum.
 /// </summary>
-public class VacuumCollisionHandler : MonoBehaviour {
-<<<<<<< HEAD
-
-    public bool ison=false;
+public class VacuumCollisionHandler : MonoBehaviour
+{
+    public bool ison = false;
 
     //Handle the collision 
     private void OnTriggerEnter(Collider other)
@@ -25,36 +24,6 @@ public class VacuumCollisionHandler : MonoBehaviour {
             {
                 vaccuumInteractable.interact();
             }
-=======
-    IInteractable vaccuumInteractable;
-    private void Start()
-    {
-        Debug.Log("Vacuum Collision Handler Instantiated!");
-    }
-    //Handle the collision 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("entered");
-        vaccuumInteractable = other.GetComponent<IInteractable>();
-        if (vaccuumInteractable != null)
-        {
-            //vaccuumInteractable.interact();
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        IInteractable temp = other.GetComponent<IInteractable>();
-        if(temp != null)
-        {
-            vaccuumInteractable = null;
-        }
-    }
-    public void Update()
-    {
-        if(Input.GetMouseButton(0) && vaccuumInteractable != null)
-        {
-            vaccuumInteractable.interact();
->>>>>>> d1ece5362cd20fee926a910387ce10a35b9c4020
         }
     }
 }
