@@ -15,7 +15,8 @@ public class Ghost : MonoBehaviour,IInteractable {
     public float sightDistance;
     public float speed = 2f;
     float distanceFromPlayer;
-    SpriteRenderer ghostEye;
+    SpriteRenderer ghostEyeL;
+    SpriteRenderer ghostEyeR;
     SpriteRenderer ghostBody;
     SpriteRenderer ghostMouth;
     MovementMode moveMode = MovementMode.Wander;
@@ -25,15 +26,17 @@ public class Ghost : MonoBehaviour,IInteractable {
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
-        ghostEye = transform.Find("ghostEye").GetComponent<SpriteRenderer>();
+        ghostEyeL = transform.Find("ghostEyeL").GetComponent<SpriteRenderer>();
+        ghostEyeR = transform.Find("ghostEyeR").GetComponent<SpriteRenderer>();
         ghostBody = transform.Find("ghostBody").GetComponent<SpriteRenderer>();
-        ghostMouth = transform.Find("ghostMouth").GetComponent<SpriteRenderer>();
+        ghostMouth = transform.Find("Mouth").GetComponent<SpriteRenderer>();
         ChooseRandomLocation();
         agent.speed = speed;
     }
-    public void SetFace(Sprite eye, Sprite body,Sprite mouth)
+    public void SetFace(Sprite eyeL, Sprite eyeR, Sprite body,Sprite mouth)
     {
-        ghostEye.sprite = eye;
+        ghostEyeL.sprite = eyeL;
+        ghostEyeR.sprite = eyeR;
         ghostBody.sprite = body;
         ghostMouth.sprite = mouth;
     }

@@ -5,7 +5,8 @@ using UnityEngine;
 public class GhostManager : MonoBehaviour {
     public GameObject ghostPrefab;
     public Sprite[] bodies;
-    public Sprite[] eyes;
+    public Sprite[] eyeR;
+    public Sprite[] eyeL;
     public Sprite[] mouth;
     public const int vipCount = 10;
     public static int totalIntruders = 0;
@@ -48,9 +49,11 @@ public class GhostManager : MonoBehaviour {
         for(int i = 0; i<portraits.Length;i++)
         {
             GameObject temp = portraits[i];
-            SpriteRenderer tempEyes = temp.transform.Find("ghostEye").GetComponent<SpriteRenderer>();
-            SpriteRenderer tempMouth= temp.transform.Find("Mouth").GetComponent<SpriteRenderer>();
-            tempEyes.sprite = vipList[i].eyeR;
+            SpriteRenderer tempEyeL = temp.transform.Find("ghostEyeL").GetComponent<SpriteRenderer>();
+            SpriteRenderer tempEyeR = temp.transform.Find("ghostEyeR").GetComponent<SpriteRenderer>();
+            SpriteRenderer tempMouth = temp.transform.Find("Mouth").GetComponent<SpriteRenderer>();
+            tempEyeR.sprite = vipList[i].eyeR;
+            tempEyeL.sprite = vipList[i].eyeL;
             tempMouth.sprite = vipList[i].mouth;
         }
     }
@@ -67,44 +70,50 @@ public class GhostManager : MonoBehaviour {
     }
     public void SpawnVIPList()
     {
-        int randEye = Random.Range(0, eyes.Length);
+        int randEyeL = Random.Range(0, eyeR.Length);
+        int randEyeR = Random.Range(0, eyeR.Length);
         int randBody = Random.Range(0, bodies.Length);
         int randMouth = Random.Range(0, mouth.Length);
-        randEye = 0;
+        randEyeL = 0;
+        randEyeR = 0;
         randBody = 0;
         randMouth = 0;
-        Face temp = new Face(eyes[randEye],eyes[randEye],bodies[randBody],mouth[randMouth]);
+        Face temp = new Face(eyeR[randEyeL],eyeR[randEyeR],bodies[randBody],mouth[randMouth]);
         while (CheckVIPContains(temp))
         {
-            randEye = Random.Range(0, eyes.Length);
+            randEyeR = Random.Range(0, eyeR.Length);
+            randEyeL = Random.Range(0, eyeR.Length);
             randBody = Random.Range(0, bodies.Length);
             randMouth = Random.Range(0, mouth.Length);
-            temp = new Face(eyes[randEye],eyes[randEye], bodies[randBody], mouth[randMouth]);
+            temp = new Face(eyeR[randEyeL],eyeR[randEyeR], bodies[randBody], mouth[randMouth]);
         }
         vipList.Add(temp);
         GameObject temp2=Instantiate(ghostPrefab);
-        temp2.GetComponent<Ghost>().SetFace(eyes[randEye],bodies[randBody],mouth[randMouth]);
+        temp2.GetComponent<Ghost>().SetFace(eyeR[randEyeL],eyeR[randEyeR],bodies[randBody],mouth[randMouth]);
         temp2.GetComponent<Ghost>().isImposter = false;
     }
     public void SpawnIntruders()
     {
-        int randEye = Random.Range(0, eyes.Length);
+        int randEyeL = Random.Range(0, eyeR.Length);
+        int randEyeR = Random.Range(0, eyeR.Length);
         int randBody = Random.Range(0, bodies.Length);
         int randMouth = Random.Range(0, mouth.Length);
-        randEye = 0;
+        randEyeL = 0;
+        randEyeR = 0;
         randBody = 0;
         randMouth = 0;
-        Face temp = new Face(eyes[randEye], eyes[randEye], bodies[randBody], mouth[randMouth]);
+        Face temp = new Face(eyeR[randEyeL], eyeR[randEyeR], bodies[randBody], mouth[randMouth]);
         while (CheckVIPContains(temp))
         {
-            randEye = Random.Range(0, eyes.Length);
+            randEyeR = Random.Range(0, eyeR.Length);
+            randEyeL = Random.Range(0, eyeR.Length);
             randBody = Random.Range(0, bodies.Length);
             randMouth = Random.Range(0, mouth.Length);
-            temp = new Face(eyes[randEye], eyes[randEye], bodies[randBody], mouth[randMouth]);
+            temp = new Face(eyeR[randEyeL], eyeR[randEyeR], bodies[randBody], mouth[randMouth]);
         }
         vipList.Add(temp);
         GameObject temp2 = Instantiate(ghostPrefab);
-        temp2.GetComponent<Ghost>().SetFace(eyes[randEye], bodies[randBody], mouth[randMouth]);
+        temp2.GetComponent<Ghost>().SetFace(eyeR[randEyeL],eyeR[randEyeL], bodies[randBody], mouth[randMouth]);
         temp2.GetComponent<Ghost>().isImposter = true;
         totalIntruders++;
     }
