@@ -1,7 +1,13 @@
-Rug Texture
-https://www.shutterstock.com/image-photo/romanian-folk-seamless-pattern-ornaments-traditional-351862961?irgwc=1&utm_medium=Affiliate&utm_campaign=Amarelo%20s.r.o.&utm_source=95937&utm_term=
+Game Devs:
+Kim Huynh(Programmer)
+Rob Garner (Programmer)
+Michael White (Architect)
 
-Vacuum Cleaner Sound:
-By geodylabs
-Link https://freesound.org/people/geodylabs/sounds/122820/
+Textures:
+
+Sounds:
+
+Vacuum Cleaner Sound By geodylabs
+https://freesound.org/people/geodylabs/sounds/122820/
+
 
