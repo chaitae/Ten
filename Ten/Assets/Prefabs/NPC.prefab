@@ -211,7 +211,8 @@ MonoBehaviour:
     optionText: 
     activatableGO: {fileID: 0}
     options: []
+  interactableGUI: {fileID: 0}
   triggerOnAwake: 0
   audioSource: {fileID: 0}
   activatableGO: {fileID: 0}
-  triggerDistance: 2
+  triggerDistance: 3

@@ -1002,6 +1002,11 @@ Prefab:
       propertyPath: interactableGUI
       value: 
       objectReference: {fileID: 413262373}
+    - target: {fileID: 114788992512878392, guid: a5b11bf94e7f7144e907411bc55dd8dc,
+        type: 2}
+      propertyPath: triggerDistance
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5b11bf94e7f7144e907411bc55dd8dc, type: 2}
   m_IsPrefabAsset: 0
