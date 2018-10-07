@@ -6,6 +6,7 @@ public class DialogueTrigger : MonoBehaviour,IInteractable {
     public Dialogue dialogue;
     public delegate void endConversation();
     public event endConversation OnEndConversationHandler;
+    public GameObject interactableGUI;
     public bool triggerOnAwake = false;
     public AudioSource audioSource;
     float currTime = 3;
@@ -43,10 +44,21 @@ public class DialogueTrigger : MonoBehaviour,IInteractable {
         //if player is near and button pressed trigger
         if(Vector3.Distance(player.transform.position,transform.position)<triggerDistance && Input.GetKeyDown(KeyCode.E) )
         {
+            interactableGUI.SetActive(true);
             TriggerDialogue();
         }
+        if(Vector3.Distance(player.transform.position, transform.position)<triggerDistance)
+        {
+            interactableGUI.SetActive(true);
+
+        }
+        else
+        {
+            interactableGUI.SetActive(false);
+
+        }
         //trigger conversation
-        if(conversationEnded)
+        if (conversationEnded)
         {
             currTime += Time.deltaTime;
         }
