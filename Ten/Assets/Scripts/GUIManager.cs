@@ -4,7 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 public class GUIManager : MonoBehaviour {
     public Text endRoundText;
+    //public Text irritatedText;
     public GameObject endRoundGUI;
+    public GameObject irritatedText;
+    public GameObject vaccuumedText;
+    public static GUIManager instance;
     private void OnEnable()
     {
         GameManager.OnLostRound += LostRound;
@@ -31,6 +35,35 @@ public class GUIManager : MonoBehaviour {
     {
         endRoundGUI.SetActive(false);
         Debug.Log("endgameset active false");
+    }
+    public void ShowVaccumedText()
+    {
+        StartCoroutine(showTExt(1F, vaccuumedText));
+
+    }
+    public void ShowAnnoyedtext()
+    {
+        StartCoroutine(showTExt(1F,irritatedText));
+
+    }
+    IEnumerator showTExt(float waitTime,GameObject temp)
+    {
+        temp.SetActive(true);
+        yield return new WaitForSeconds(waitTime);
+        temp.SetActive(false);
+        //print("WaitAndPrint " + Time.time);
+    }
+
+private void Awake()
+    {
+        if(instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
     // Use this for initialization
     void Start () {
