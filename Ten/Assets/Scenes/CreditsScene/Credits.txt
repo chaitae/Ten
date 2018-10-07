@@ -1,6 +1,9 @@
+Credits
+
 Game Devs:
 Kim Huynh(Programmer)
 Rob Garner (Programmer)
+Jack Hanson(Programmer)
 Michael White (Architect)
 
 Textures:
@@ -10,4 +13,5 @@ Sounds:
 Vacuum Cleaner Sound By geodylabs
 https://freesound.org/people/geodylabs/sounds/122820/
 
-
+Irene Rible: Creative Commons Halloween Mix 2009
+http://freemusicarchive.org/member/Irene_Rible/Creative_Commons_Halloween_Mix_2009
