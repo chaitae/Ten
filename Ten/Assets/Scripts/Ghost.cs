@@ -125,7 +125,7 @@ public class Ghost : MonoBehaviour,IInteractable {
         this.transform.SetParent(vacuumCol.gameObject.transform);
         moveMode = MovementMode.Stop;
         Debug.Log(this.name + " vacuumed");
-        StartCoroutine(WaitAndDestroy(3));
+        StartCoroutine(WaitAndDestroy(2));
     }
     private IEnumerator WaitAndDestroy(float waitTime)
     {

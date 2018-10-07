@@ -33,6 +33,8 @@ public class GhostManager : MonoBehaviour {
         }
         SetPortraits();
         SpawnIntruders();
+        StartCoroutine(SpawnIntrudersPeriodically());
+
     }
     public void Reset()
     {
@@ -43,6 +45,8 @@ public class GhostManager : MonoBehaviour {
         }
         SetPortraits();
         SpawnIntruders();
+        StartCoroutine(SpawnIntrudersPeriodically());
+
     }
     void SetPortraits()
     {
@@ -118,8 +122,13 @@ public class GhostManager : MonoBehaviour {
         totalIntruders++;
     }
 
-	void GenerateGhosts()
+	void GenerateIntruders()
     {
-
+        StartCoroutine(SpawnIntrudersPeriodically());
+    }
+    IEnumerator SpawnIntrudersPeriodically()
+    {
+        yield return new WaitForSeconds(2.0f);
+        SpawnIntruders();
     }
 }
