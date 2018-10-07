@@ -15,15 +15,27 @@ public class Ghost : MonoBehaviour,IInteractable {
     public float sightDistance;
     public float speed = 2f;
     float distanceFromPlayer;
+    SpriteRenderer ghostEye;
+    SpriteRenderer ghostBody;
+    SpriteRenderer ghostMouth;
     MovementMode moveMode = MovementMode.Wander;
     GameObject player;
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
+        ghostEye = transform.Find("ghostEye").GetComponent<SpriteRenderer>();
+        ghostBody = transform.Find("ghostBody").GetComponent<SpriteRenderer>();
+        ghostMouth = transform.Find("ghostMouth").GetComponent<SpriteRenderer>();
         ChooseRandomLocation();
         agent.speed = speed;
+    }
+    public void SetFace(Sprite eye, Sprite body,Sprite mouth)
+    {
+        ghostEye.sprite = eye;
+        ghostBody.sprite = body;
+        ghostMouth.sprite = mouth;
     }
     void ChooseRandomLocation()
     {
@@ -53,12 +65,9 @@ public class Ghost : MonoBehaviour,IInteractable {
         result = Vector3.zero;
         return false;
     }
-
     void Update ()
     {
         distanceFromPlayer = Vector3.Distance(this.transform.position, player.transform.position);
-
-        //movement flee action
         if(moveMode == MovementMode.Flee)
         {
             if (!agent.hasPath)
@@ -83,7 +92,6 @@ public class Ghost : MonoBehaviour,IInteractable {
                 moveMode = MovementMode.Flee;
                 agent.isStopped = true;
                 agent.ResetPath();
-                Debug.Log("ruuuun");
             }
         }
         else if(moveMode == MovementMode.Stop)
@@ -91,15 +99,12 @@ public class Ghost : MonoBehaviour,IInteractable {
             agent.isStopped = true;
             agent.ResetPath();
         }
-        //movement wander action
-        
     }
-
     public void interact()
     {
+        if(isImposter)
         VacuumedAction();
     }
-
     public void interact(KeyCode key)
     {
     }
@@ -111,7 +116,6 @@ public class Ghost : MonoBehaviour,IInteractable {
         Debug.Log(this.name + " vacuumed");
         StartCoroutine(WaitAndDestroy(3));
     }
-
     private IEnumerator WaitAndDestroy(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
