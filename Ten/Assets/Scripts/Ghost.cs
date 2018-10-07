@@ -106,7 +106,15 @@ public class Ghost : MonoBehaviour,IInteractable {
     public void interact()
     {
         if(isImposter)
-        VacuumedAction();
+        {
+            VacuumedAction();
+            GUIManager.instance.ShowVaccumedText();
+
+        }
+        else
+        {
+            GUIManager.instance.ShowAnnoyedtext();
+        }
     }
     public void interact(KeyCode key)
     {
