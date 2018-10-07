@@ -50,7 +50,7 @@ public class GhostManager : MonoBehaviour {
             GameObject temp = portraits[i];
             SpriteRenderer tempEyes = temp.transform.Find("ghostEye").GetComponent<SpriteRenderer>();
             SpriteRenderer tempMouth= temp.transform.Find("Mouth").GetComponent<SpriteRenderer>();
-            tempEyes.sprite = vipList[i].eyes;
+            tempEyes.sprite = vipList[i].eyeR;
             tempMouth.sprite = vipList[i].mouth;
         }
     }
@@ -58,7 +58,7 @@ public class GhostManager : MonoBehaviour {
     {
         foreach(Face temp in vipList)
         {
-            if(temp.body == face.body && temp.eyes == face.eyes && temp.mouth == face.mouth)
+            if(temp.body == face.body && temp.eyeL == face.eyeL &&temp.eyeR == face.eyeR && temp.mouth == face.mouth)
             {
                 return true;
             }
@@ -73,17 +73,17 @@ public class GhostManager : MonoBehaviour {
         randEye = 0;
         randBody = 0;
         randMouth = 0;
-        Face temp = new Face(eyes[randEye],bodies[randBody],mouth[randMouth]);
+        Face temp = new Face(eyes[randEye],eyes[randEye],bodies[randBody],mouth[randMouth]);
         while (CheckVIPContains(temp))
         {
             randEye = Random.Range(0, eyes.Length);
             randBody = Random.Range(0, bodies.Length);
             randMouth = Random.Range(0, mouth.Length);
-            temp = new Face(eyes[randEye], bodies[randBody], mouth[randMouth]);
+            temp = new Face(eyes[randEye],eyes[randEye], bodies[randBody], mouth[randMouth]);
         }
         vipList.Add(temp);
         GameObject temp2=Instantiate(ghostPrefab);
-        temp2.GetComponent<Ghost>().SetFace(eyes[randEye], bodies[randBody],mouth[randMouth]);
+        temp2.GetComponent<Ghost>().SetFace(eyes[randEye],bodies[randBody],mouth[randMouth]);
         temp2.GetComponent<Ghost>().isImposter = false;
     }
     public void SpawnIntruders()
@@ -94,13 +94,13 @@ public class GhostManager : MonoBehaviour {
         randEye = 0;
         randBody = 0;
         randMouth = 0;
-        Face temp = new Face(eyes[randEye], bodies[randBody], mouth[randMouth]);
+        Face temp = new Face(eyes[randEye], eyes[randEye], bodies[randBody], mouth[randMouth]);
         while (CheckVIPContains(temp))
         {
             randEye = Random.Range(0, eyes.Length);
             randBody = Random.Range(0, bodies.Length);
             randMouth = Random.Range(0, mouth.Length);
-            temp = new Face(eyes[randEye], bodies[randBody], mouth[randMouth]);
+            temp = new Face(eyes[randEye], eyes[randEye], bodies[randBody], mouth[randMouth]);
         }
         vipList.Add(temp);
         GameObject temp2 = Instantiate(ghostPrefab);
