@@ -40,6 +40,14 @@ public class GameManager : MonoBehaviour {
     void EndRound()
     {
         Debug.Log("roundEnd");
+        if(GhostManager.totalIntruders >0)
+        {
+            Debug.Log("yahlost");
+        }
+        else
+        {
+            Debug.Log("you wonnn");
+        }
     }
     void StartRound()
     {

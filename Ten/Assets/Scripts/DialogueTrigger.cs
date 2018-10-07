@@ -13,6 +13,12 @@ public class DialogueTrigger : MonoBehaviour,IInteractable {
     bool calledDialogue = false;
     bool isInDialogue = false;
     bool conversationEnded = false;
+    [SerializeField] float triggerDistance = 4f;
+    GameObject player;
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     void OnEnable()
     {
         DialogueManager.OnEndConversationHandler += SetDialogueOff;
@@ -26,20 +32,20 @@ public class DialogueTrigger : MonoBehaviour,IInteractable {
     {
         isInDialogue = false;
     }
+    void OnDrawGizmos()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, triggerDistance);
+    }
     void Update()
     {
-        //if(Input.GetMouseButtonDown(1))
-        //{
-        //    TriggerDialogue();
-        //}
-        //currTime += Time.deltaTime;
-        //if(currTime >=.3f && triggerOnAwake && !calledDialogue)
-        //{
-        //    calledDialogue = true;
-        //    TriggerDialogue();
-        //}
-
-        //start timer after dialogue completed
+        //if player is near and button pressed trigger
+        if(Vector3.Distance(player.transform.position,transform.position)<triggerDistance && Input.GetKeyDown(KeyCode.E) )
+        {
+            TriggerDialogue();
+        }
+        //trigger conversation
         if(conversationEnded)
         {
             currTime += Time.deltaTime;
