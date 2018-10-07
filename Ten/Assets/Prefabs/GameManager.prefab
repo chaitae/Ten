@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114186529248191906}
   - component: {fileID: 114525751541373886}
   - component: {fileID: 114475292910457972}
+  - component: {fileID: 114961668476625416}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -54,8 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 0}
-  dialogueBox: {fileID: 1422518349558888, guid: 116d043f15f62f14280bf82213beb955,
-    type: 2}
+  dialogueBox: {fileID: 0}
   currDialogue:
     name: 
     sentences: []
@@ -93,6 +93,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 037a34d819866cd438bc731924128a04, type: 3}
   - {fileID: 21300000, guid: a0a4fe53cc57e4b45bacc3ddc326a3d5, type: 3}
   vipList: []
+  portraits:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114525751541373886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -104,5 +115,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe0592e364da0f439662cbb266848de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstPersonController: {fileID: 0}
   currTime: 0
-  roundEndTime: 20
+  roundEndTime: 120
+--- !u!114 &114961668476625416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1418446390556324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca21ad6fc4c25c14f996b0ccfd186f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endRoundText: {fileID: 0}
+  endRoundGUI: {fileID: 0}

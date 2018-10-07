@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 82709080969954332}
   m_Layer: 0
   m_Name: FPSControllerWithKirby
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2400,7 +2400,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 21b95c7590596fa4a853613391bc0356, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.26
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2725,7 +2725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e92394e7ace50a142b99826ef8321784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ison: 0
+  ison: 1
 --- !u!124 &124523742389232478
 Behaviour:
   m_ObjectHideFlags: 1
