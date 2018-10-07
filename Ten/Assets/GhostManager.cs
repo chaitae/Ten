@@ -10,14 +10,28 @@ public class GhostManager : MonoBehaviour {
     public const int vipCount = 10;
     public static int totalIntruders = 0;
     [SerializeField]
-    public List<Face> vipList;
+    public  List<Face> vipList;
+    public GameObject[] portraits;
 	// Use this for initialization
 	void Start () {
         for(int i = 0; i<vipCount; i++)
         {
             SpawnVIPList();
         }
+        SetPortraits();
         SpawnIntruders();
+    }
+    void SetPortraits()
+    {
+        for(int i = 0; i<portraits.Length;i++)
+        {
+            GameObject temp = portraits[i];
+            SpriteRenderer tempEyes = temp.transform.Find("ghostEye").GetComponent<SpriteRenderer>();
+            SpriteRenderer tempMouth= temp.transform.Find("Mouth").GetComponent<SpriteRenderer>();
+            tempEyes.sprite = vipList[i].eyes;
+            tempMouth.sprite = vipList[i].mouth;
+            //SpriteRenderer
+        }
     }
     bool CheckVIPContains(Face face)
     {
