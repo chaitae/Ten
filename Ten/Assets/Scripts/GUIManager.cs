@@ -15,7 +15,7 @@ public class GUIManager : MonoBehaviour {
     {
         GameManager.OnLostRound -= LostRound;
         GameManager.OnWonRound -= WonRound;
-        GameManager.OnStartRound += StartRound;
+        GameManager.OnStartRound -= StartRound;
     }
     void LostRound()
     {
@@ -30,6 +30,7 @@ public class GUIManager : MonoBehaviour {
     void StartRound()
     {
         endRoundGUI.SetActive(false);
+        Debug.Log("endgameset active false");
     }
     // Use this for initialization
     void Start () {

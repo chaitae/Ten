@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
     public static event BaseEventNotifier OnEndRound;
     public static event BaseEventNotifier OnStartRound;
     public static GameManager instance;
+    public UnityStandardAssets.Characters.FirstPerson.FirstPersonController firstPersonController;
     public float currTime= 0;
     public float roundEndTime = 120;
     
@@ -47,7 +48,11 @@ public class GameManager : MonoBehaviour {
     }
     void EndRound()
     {
-        if(OnEndRound != null)
+        //Cursor.visible = true;
+        //UnityStandardAssets.Characters.FirstPerson.FirstPersonController firstPersController = GameObject.FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>();
+        currTime = 0;
+        firstPersonController.DisableFPSMouse();
+        if (OnEndRound != null)
         {
             OnEndRound();
         }
@@ -71,11 +76,14 @@ public class GameManager : MonoBehaviour {
     }
     public void StartRound()
     {
-        Time.timeScale = 1;
-        if(OnStartRound != null)
+        if (OnStartRound != null)
         {
             OnStartRound();
         }
+        firstPersonController.EnableFPSMouse();
+        GhostManager.instance.Reset();
+        Time.timeScale = 1;
+
     }
     private void Update()
     {

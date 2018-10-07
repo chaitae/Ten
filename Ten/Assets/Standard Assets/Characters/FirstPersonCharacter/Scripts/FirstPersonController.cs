@@ -41,7 +41,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
-
+        public void DisableFPSMouse()
+        {
+            m_MouseLook.SetCursorLock(false);
+        }
+        public void EnableFPSMouse()
+        {
+            m_MouseLook.SetCursorLock(true);
+        }
         // Use this for initialization
         private void Start()
         {
